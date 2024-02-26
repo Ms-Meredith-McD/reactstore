@@ -7,16 +7,18 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 
 export default function App() {
+  
+
 
   const [products, setProducts] = useState(productsDb)
-  const [cart, setCart] = useState(null)
+  const [listCartItems, setListCartItems] = useState([])
 
 
 
 
   useEffect(() => {
-    console.log(cart)
-  }, [cart])
+    console.log(listCartItems)
+  }, [listCartItems])
 
   return (
     <>
@@ -24,14 +26,15 @@ export default function App() {
         <div className="row">
           {/* left side of screen*/}
           <div className="col-6">
-            <Products products={products} />
+            <Products products={products} listCartItems={listCartItems} setListCartItems={setListCartItems} />
           </div>
           {/*Product goes here*/}
-        </div>
+        
         {/* right side of screen*/}
         <div className="col-6">
-        <Cart cart={cart} />
+          <Cart listCartItems={listCartItems} setListCartItems={setListCartItems}/>
           {/*Other stuff goes here*/}
+          </div>
         </div>
       </div>
     </>

@@ -1,7 +1,15 @@
 import React from "react";
 
 
-export default function Products(props) { 
+export default function Products(props) {
+
+    function addToCart(product) {
+        if (props.listCartItems.length === 0) {
+            props.setListCartItems([product])
+        } else {
+            props.setListCartItems([...props.listCartItems, product])
+        }
+    }
 
 
     return (
@@ -16,15 +24,15 @@ export default function Products(props) {
                 </thead>
 
                 <tbody>
-                    {props.products.map(productList => (
-                        <tr key={productList.item}>
+                    {props.products.map(product => (
+                        <tr key={product.item}>
                             <td>
-                            {productList.item}
+                                {product.item}
                             </td>
-                            <td>{productList.cost}</td>
-                            <td>{productList.quantity}</td>
+                            <td>{product.cost}</td>
+                            <td>{product.quantity}</td>
                             <td>
-                                <button onClick={() => props.setCart(note)}>{}</button>
+                                <button className="btn btn-primary" onClick={() => addToCart(product)}>Add to Cart</button>
                             </td>
                         </tr>
                     ))}
